@@ -1,17 +1,8 @@
-"""
-File: penggabung.py
-
-Kelas utama yang menggabungkan Trie untuk autocomplete dan Stack untuk undo/redo.
-"""
-
 from .struktur.trie import Trie
 from .struktur.stack import Stack
 
 class MesinKetik:
-    """
-    Kelas 'Mesin Ketik' yang mengelola state teks,
-    riwayat perubahan (undo/redo), dan saran kata (autocomplete).
-    """
+
 
     def __init__(self, file_kamus: str):
         """

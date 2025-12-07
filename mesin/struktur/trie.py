@@ -1,9 +1,3 @@
-"""
-File: trie.py
-
-Implementasi struktur data Trie (Prefix Tree) untuk autocomplete.
-"""
-
 class TrieNode:
     """
     Kelas untuk satu node dalam Trie.

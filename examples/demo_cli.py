@@ -1,14 +1,9 @@
-# Contoh implementasi dan demo interaktif menggunakan MesinKetik di lingkungan CLI.
-# Versi ini menggunakan msvcrt untuk input per-karakter (Windows-only).
-# "
 import os
 import sys
 
-# -- Menambahkan parent directory ke sys.path untuk impor --
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
-# ---------------------------------------------------------
 
 from mesin.penggabung import MesinKetik
 
@@ -71,13 +66,11 @@ def run_interactive_demo():
         elif char == b'\x19': # Ctrl+Y (Redo)
             current_text = mesin.redo()
         elif char == b' ': # Spasi
-            # Simpan state sebelum menambahkan spasi
             mesin.ketik(current_text)
             current_text += " "
         elif char == b'\r': # Enter
-            # Simpan state saat ini, lalu mulai baris baru (opsional)
             mesin.ketik(current_text)
-            current_text += "\n> " # Pindah ke baris baru
+            current_text += "\n> " 
         elif char == b'\t': # Tab
             if saran:
                 top_suggestion = saran[0][0]
@@ -86,19 +79,16 @@ def run_interactive_demo():
                     current_text = top_suggestion
                 else:
                     current_text = current_text[:last_space+1] + top_suggestion
-                # Simpan state setelah autocomplete
                 mesin.ketik(current_text)
         elif char == b'\x08': # Backspace
             current_text = current_text[:-1]
         
-        # Karakter Biasa
         else:
             try:
                 char_decoded = char.decode('utf-8')
                 if char_decoded.isprintable():
                     current_text += char_decoded
             except UnicodeDecodeError:
-                # Abaikan karakter yang tidak bisa di-decode
                 pass
 
 def main():
